@@ -1,8 +1,7 @@
 export async function up(knex) {
   return knex.schema.createTable('ingredients_type', (table) => {
     table.increments('id')
-    table.string('type')
-    table.boolean('staple')
+    table.string('category')
   })
 }
 

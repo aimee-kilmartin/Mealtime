@@ -1,8 +1,6 @@
 export async function up(knex) {
   return knex.schema.createTable('macros', (table) => {
     table.increments('id')
-    table.string('quantity')
-    table.string('unit')
     table.string('name')
   })
 }
