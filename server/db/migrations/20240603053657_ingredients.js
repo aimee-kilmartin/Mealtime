@@ -3,7 +3,7 @@ export async function up(knex) {
     table.increments('id')
     table.string('description')
     table.boolean('staple')
-    table.string('category')
+    table.string('ingredient_type_id')
   })
 }
 

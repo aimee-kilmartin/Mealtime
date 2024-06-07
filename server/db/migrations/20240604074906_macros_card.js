@@ -5,7 +5,6 @@ export async function up(knex) {
     table.integer('macros_id')
     table.string('quantity')
     table.string('unit')
-    table.string('name')
   })
 }
 

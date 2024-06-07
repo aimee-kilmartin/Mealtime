@@ -3,7 +3,6 @@ export async function up(knex) {
     table.increments('id')
     table.integer('recipe_id')
     table.integer('ingredients_id')
-    table.integer('method_id')
     table.string('quantity')
     table.string('unit')
     table.string('note')

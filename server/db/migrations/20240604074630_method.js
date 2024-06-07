@@ -1,7 +1,7 @@
 export async function up(knex) {
   return knex.schema.createTable('method', (table) => {
     table.increments('id')
-    table.string('instruction')
+    table.string('method')
     table.string('note')
   })
 }
