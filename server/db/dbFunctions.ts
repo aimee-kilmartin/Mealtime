@@ -18,10 +18,8 @@ export async function getAllCategories(): Promise<Category[]> {
   return await connection('category').select()
 }
 
-export async function getRecipesByCategory(
-  categoryId: number,
-): Promise<RecipesList[]> {
-  return await connection('category').where({ categoryId }).select()
+export async function getRecipesByCategory(id: number): Promise<RecipesList[]> {
+  return await connection('category').where('category.id', id).select().first()
 }
 
 export async function getRecipeDetailsById(id: number): Promise<Recipe> {
