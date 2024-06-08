@@ -34,7 +34,6 @@ export async function getRecipeDetailsById(id: number): Promise<Recipe> {
   return await connection('recipes').where({ id }).select().first()
 }
 
-// *** ^ DONE ***
 export async function getRecipeIngredientsById(
   id: number,
 ): Promise<IngredientsCard[]> {
@@ -54,9 +53,9 @@ export async function getRecipeIngredientsById(
 }
 
 export async function getRecipeMacrosById(id: number): Promise<MacrosCard[]> {
-  return await connection('recipe')
-    .join('macros_card', 'recipe.id', 'macros_card.recipe_id')
-    .where('recipe.id', id)
+  return await connection('recipes')
+    .join('macros_card', 'recipes.id', 'macros_card.recipe_id')
+    .where('recipes.id', id)
     .join('macros', 'macros_card.macros_id', 'macros.id')
     .select(
       'macros_card.id',
@@ -69,12 +68,12 @@ export async function getRecipeMacrosById(id: number): Promise<MacrosCard[]> {
 }
 
 export async function getRecipeStepsById(id: number): Promise<MethodCard[]> {
-  return await connection('recipe')
-    .join('method', 'recipe.id', 'method.recipe_id')
-    .where('recipe.id', id)
-    .join('method', 'method.method_id', 'method.id')
+  return await connection('recipes')
+    .join('method_card', 'recipes.id', 'method_card.recipe_id')
+    .where('recipes.id', id)
+    .join('method', 'method_card.method_id', 'method.id')
     .select(
-      'method_card.id',
+      'method_card.id as id',
       'method_card.recipe_id as recipeId',
       'method_card.method_id as methodId ',
       'method_card.step as step',
@@ -82,6 +81,7 @@ export async function getRecipeStepsById(id: number): Promise<MethodCard[]> {
       'method.note as methodNote',
     )
 }
+// *** ^ DONE ***
 
 //CREATE
 
