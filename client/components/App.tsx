@@ -1,13 +1,17 @@
-import { useFruits } from '../hooks/useFruits.ts'
+// import { useFruits } from '../hooks/useFruits.ts'
+import { Outlet } from 'react-router-dom'
+import { Header } from './Header'
+import { Footer } from './Footer'
 
-function App() {
-  const { data } = useFruits()
-
+export function App() {
   return (
     <>
-      <div className="app">
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
+      <div id="page-container">
+        <div id="content-wrap">
+          <Header />
+          <Outlet />
+        </div>
+        <Footer />
       </div>
     </>
   )
