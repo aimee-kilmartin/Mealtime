@@ -19,7 +19,15 @@ export async function getAllCategories(): Promise<Category[]> {
 }
 
 export async function getRecipesByCategory(id: number): Promise<RecipesList[]> {
-  return await connection('category').where('category.id', id).select().first()
+  return await connection('recipes')
+    .join('category', 'category.id', 'recipes.category_id')
+    .where('category.id', id)
+    .select(
+      'recipes.id',
+      'recipes.title',
+      'recipes.description',
+      'recipes.image',
+    )
 }
 
 export async function getRecipeDetailsById(id: number): Promise<Recipe> {
