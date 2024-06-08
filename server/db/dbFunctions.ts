@@ -31,15 +31,16 @@ export async function getRecipesByCategory(id: number): Promise<RecipesList[]> {
 }
 
 export async function getRecipeDetailsById(id: number): Promise<Recipe> {
-  return await connection('recipe').where({ id }).select().first()
+  return await connection('recipes').where({ id }).select().first()
 }
 
+// *** ^ DONE ***
 export async function getRecipeIngredientsById(
   id: number,
 ): Promise<IngredientsCard[]> {
-  return await connection('recipe')
-    .join('ingredients_card', 'recipe.id', 'ingredients_card.recipe_id')
-    .where('recipe.id', id)
+  return await connection('recipes')
+    .join('ingredients_card', 'recipes.id', 'ingredients_card.recipe_id')
+    .where('recipes.id', id)
     .join('ingredients', 'ingredients_card.ingredients_id', 'ingredients.id')
     .select(
       'ingredients_card.id',
