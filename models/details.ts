@@ -1,3 +1,4 @@
+export type AllIngredients = Ingredients | IngredientsCard | IngredientsType
 export interface IngredientsType {
   id: number
   type: string
@@ -5,7 +6,7 @@ export interface IngredientsType {
 
 export interface Ingredients {
   id: number
-  desciption: string
+  description: string
   staple: boolean
   ingredientTypeId: number
 }
@@ -19,6 +20,7 @@ export interface IngredientsCard {
   note: string
 }
 
+export type AllMethods = Method | MethodCard
 export interface Method {
   id: number
   method: string
@@ -32,6 +34,7 @@ export interface MethodCard {
   step: number
 }
 
+export type AllMacros = Macros | MacrosCard
 export interface Macros {
   id: number
   name: string

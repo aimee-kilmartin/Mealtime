@@ -1,3 +1,6 @@
+import { AllIngredients, AllMacros, AllMethods } from '../models/details.ts'
+
+export type RecipesFullList = Recipe | AllIngredients | AllMacros | AllMethods
 export interface RecipesList {
   id: number
   title: string
@@ -11,10 +14,10 @@ export interface Recipe extends RecipesList {
   cookTime: number
   prepTime: number
   servings: number
-  image: string
-  categoryId: number
   creationDate: string
 }
+
+export type NewRecipe = Omit<RecipesList, 'id'>
 
 export interface Category {
   id: number

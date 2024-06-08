@@ -1,5 +1,10 @@
 import connection from './connection.ts'
-import { Category, Recipe, RecipesList } from '../../models/recipes.ts'
+import {
+  Category,
+  Recipe,
+  RecipesFullList,
+  RecipesList,
+} from '../../models/recipes.ts'
 import {
   AllIngredients,
   AllMacros,
