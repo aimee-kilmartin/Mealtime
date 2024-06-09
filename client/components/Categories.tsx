@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export function Categories() {
   const fakeCategories = [
     {
@@ -36,7 +38,9 @@ export function Categories() {
     <>
       <ul>
         {fakeCategories.map((categories) => (
-          <li key={categories.id}>{categories.description}</li>
+          <li key={categories.id}>
+            <Link to={categories.description}> {categories.description}</Link>
+          </li>
         ))}
       </ul>
     </>
