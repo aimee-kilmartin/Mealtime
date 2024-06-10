@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Category } from '../../models/recipes'
-import { fetchCategories } from '../apis/apiClient'
+import { fetchCategories } from '../apis/apiClientLists'
 import { useQuery } from '@tanstack/react-query'
 
 export function Categories() {

@@ -9,7 +9,7 @@ const server = express()
 server.use(express.json())
 
 server.use('/api/v1/categories', listRoutes)
-server.use('/api/v1/recipe/', recipeRoutes)
+server.use('/api/v1/recipes/', recipeRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))

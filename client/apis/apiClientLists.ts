@@ -1,5 +1,4 @@
 import request from 'superagent'
-import { Category, RecipesList } from '../../models/recipes'
 
 const rootUrl = '/api/v1/categories'
 

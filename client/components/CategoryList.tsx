@@ -1,4 +1,4 @@
-import { fetchRecipesByCategory } from '../apis/apiClient'
+import { fetchRecipesByCategory } from '../apis/apiClientLists'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { RecipeMiniCard } from './RecipeMiniCard'
