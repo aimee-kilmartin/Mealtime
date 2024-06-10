@@ -28,6 +28,7 @@ export function Categories() {
                 <Link to={category.description}>
                   <p>{category.description}</p>
                 </Link>
+                <img src={category.image} alt="" className="icon" />
               </div>
             </li>
           ))}
