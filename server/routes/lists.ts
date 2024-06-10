@@ -16,10 +16,10 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:category', async (req, res) => {
   try {
-    const id = Number(req.params.id)
-    const category = await db.getRecipesByCategory(id)
+    const description = String(req.params.category)
+    const category = await db.getRecipesByCategory(description)
     res.json(category)
   } catch (error) {
     console.log(error)

@@ -12,7 +12,7 @@ import { CategoryList } from './components/CategoryList.tsx'
 export default createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Categories />} />
-    <Route path="/:category" element={<CategoryList category={[]} />} />
+    <Route path="/:category" element={<CategoryList />} />
     {/* <Route
       path="/recipe/:id"
       element={
