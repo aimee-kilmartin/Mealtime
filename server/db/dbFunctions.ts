@@ -88,105 +88,105 @@ export async function getRecipeStepsById(id: number): Promise<MethodCard[]> {
 
 //CREATE
 
-export async function createNewRecipeIngredients(
-  newIngredients: AllIngredients,
-) {
-  const { type, description, staple, quantity, unit, note } = newIngredients
-  return await connection('ingredients').insert({
-    type,
-    description,
-    staple,
-    quantity,
-    unit,
-    note,
-  })
-}
+// export async function createNewRecipeIngredients(
+//   newIngredients: AllIngredients,
+// ) {
+//   const { type, description, staple, quantity, unit, note } = newIngredients
+//   return await connection('ingredients').insert({
+//     type,
+//     description,
+//     staple,
+//     quantity,
+//     unit,
+//     note,
+//   })
+// }
 
-export async function createNewRecipeMacros(newMacros: AllMacros) {
-  const { name, quantity, unit } = newMacros
-  return await connection('recipe').insert({ name, quantity, unit })
-}
+// export async function createNewRecipeMacros(newMacros: AllMacros) {
+//   const { name, quantity, unit } = newMacros
+//   return await connection('recipe').insert({ name, quantity, unit })
+// }
 
-export async function createNewRecipeMethod(newMethod: AllMethods) {
-  const { method, note, step } = newMethod
-  return await connection('method').insert({
-    method,
-    note,
-    step,
-  })
-}
+// export async function createNewRecipeMethod(newMethod: AllMethods) {
+//   const { method, note, step } = newMethod
+//   return await connection('method').insert({
+//     method,
+//     note,
+//     step,
+//   })
+// }
 
-export async function createNewRecipe(newRecipe: Recipe) {
-  const {
-    title,
-    description,
-    image,
-    categoryId,
-    favourite,
-    cookTime,
-    prepTime,
-    servings,
-  } = newRecipe
+// export async function createNewRecipe(newRecipe: Recipe) {
+//   const {
+//     title,
+//     description,
+//     image,
+//     categoryId,
+//     favourite,
+//     cookTime,
+//     prepTime,
+//     servings,
+//   } = newRecipe
 
-  return await connection('recipe').insert({
-    title,
-    description,
-    image,
-    categoryId,
-    favourite,
-    cookTime,
-    prepTime,
-    servings,
-  })
-}
+//   return await connection('recipe').insert({
+//     title,
+//     description,
+//     image,
+//     categoryId,
+//     favourite,
+//     cookTime,
+//     prepTime,
+//     servings,
+//   })
+// }
 
-//UPDATE
+// //UPDATE
 
-export async function updateRecipe(updatedRecipe: RecipesFullList) {
-  const updateFields = await connection('recipe')
-    .where('recipe.id', updateId)
-    .select(
-      'recipe.title as recipeTitle',
-      'recipe.description as recipeDescription',
-      'recipe.cook_time as cookTime',
-      'recipe.prep_time as prepTime',
-      'recipe.servings as servings',
-      'recipe.image as recipeImage',
-      'ingredients_card.quantity as ingredientQuantity',
-      'ingredients_card.unit as ingredientUnit',
-      'ingredients_card.note as ingredientNote',
-      'ingredients.description as ingredientDescription',
-      'macros_card.quantity as macrosQuantity',
-      'macros_card.unit as macrosUnit',
-      'macros.name as macrosName',
-      'method_card.step as step',
-      'method.method as method',
-      'method.note as methodNote',
-    )
-    .first()
-    .update({
-      recipeTitle: updatedRecipe.recipe.title,
-      recipeDescription: updatedRecipe.recipe.description,
-      cookTime: updatedRecipe.recipe.cook_time,
-      prepTime: updatedRecipe.recipe.prep_time,
-      servings: updatedRecipe.recipe.servings,
-      recipeImage: updatedRecipe.recipe.image,
-      ingredientQuantity: updatedRecipe.ingredients_card.quantity,
-      ingredientUnit: updatedRecipe.ingredients_card.unit,
-      ingredientNote: updatedRecipe.ingredients_card.note,
-      ingredientDescription: updatedRecipe.ingredients.description,
-      macrosQuantity: updatedRecipe.macros_card.quantity,
-      macrosUnit: updatedRecipe.macros_card.unit,
-      macrosName: updatedRecipe.macros.name,
-      step: updatedRecipe.method_card.step,
-      method: updatedRecipe.method.method,
-      methodNote: updatedRecipe.method.note,
-    })
-  return updateFields
-}
+// export async function updateRecipe(updatedRecipe: RecipesFullList) {
+//   const updateFields = await connection('recipe')
+//     .where('recipe.id', updateId)
+//     .select(
+//       'recipe.title as recipeTitle',
+//       'recipe.description as recipeDescription',
+//       'recipe.cook_time as cookTime',
+//       'recipe.prep_time as prepTime',
+//       'recipe.servings as servings',
+//       'recipe.image as recipeImage',
+//       'ingredients_card.quantity as ingredientQuantity',
+//       'ingredients_card.unit as ingredientUnit',
+//       'ingredients_card.note as ingredientNote',
+//       'ingredients.description as ingredientDescription',
+//       'macros_card.quantity as macrosQuantity',
+//       'macros_card.unit as macrosUnit',
+//       'macros.name as macrosName',
+//       'method_card.step as step',
+//       'method.method as method',
+//       'method.note as methodNote',
+//     )
+//     .first()
+//     .update({
+//       recipeTitle: updatedRecipe.recipe.title,
+//       recipeDescription: updatedRecipe.recipe.description,
+//       cookTime: updatedRecipe.recipe.cook_time,
+//       prepTime: updatedRecipe.recipe.prep_time,
+//       servings: updatedRecipe.recipe.servings,
+//       recipeImage: updatedRecipe.recipe.image,
+//       ingredientQuantity: updatedRecipe.ingredients_card.quantity,
+//       ingredientUnit: updatedRecipe.ingredients_card.unit,
+//       ingredientNote: updatedRecipe.ingredients_card.note,
+//       ingredientDescription: updatedRecipe.ingredients.description,
+//       macrosQuantity: updatedRecipe.macros_card.quantity,
+//       macrosUnit: updatedRecipe.macros_card.unit,
+//       macrosName: updatedRecipe.macros.name,
+//       step: updatedRecipe.method_card.step,
+//       method: updatedRecipe.method.method,
+//       methodNote: updatedRecipe.method.note,
+//     })
+//   return updateFields
+// }
 
-//DELETE
+// //DELETE
 
-export async function deleteRecipe(id: number): Promise<Recipe> {
-  return await connection('recipe').where('recipe.id', id).delete()
-}
+// export async function deleteRecipe(id: number): Promise<Recipe> {
+//   return await connection('recipe').where('recipe.id', id).delete()
+// }

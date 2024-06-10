@@ -1,15 +1,7 @@
-import { Link } from 'react-router-dom'
-import { Category, RecipesList } from '../../models/recipes'
 import { fetchRecipesByCategory } from '../apis/apiClient'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-import { Recipe } from './RecipeCard'
-
-// interface Props {
-//   category: RecipesList[]
-// }
-// { recipes }: Props
-// category }: Props
+import { RecipeMiniCard } from './RecipeMiniCard'
 
 export function CategoryList() {
   const { category } = useParams()
@@ -32,12 +24,19 @@ export function CategoryList() {
     }
     return (
       <>
-        <ul>
-          {data.map((recipe) => (
-            <li key={recipe.id}>{recipe.description}</li>
-          ))}
-        </ul>
+        {data.map((recipe) => (
+          <RecipeMiniCard key={recipe.id} {...recipe} />
+        ))}
       </>
     )
   }
+
+  //   return (
+  //     <>
+  //       {data.map((recipe) => (
+  //         <li key={recipe.id}>{recipe.description}</li>
+  //       ))}
+  //     </>
+  //   )
+  // }
 }
