@@ -8,7 +8,7 @@ export function RecipeMiniCard(recipe: Recipe) {
   return (
     <>
       <div>
-        <Link to={String(recipe.id)}>
+        <Link to={`/recipes/${recipe.title}`}>
           <h2>{recipe.title} </h2>
           <p>{recipe.description}</p>
         </Link>

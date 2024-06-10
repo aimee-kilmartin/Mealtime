@@ -14,7 +14,7 @@ export default createRoutesFromElements(
     <Route index element={<Categories />} />
     <Route path="/:category" element={<CategoryList />} />
     <Route
-      path="/recipes/:id"
+      path="/:category/:id"
       element={
         <>
           <Recipe />

@@ -4,9 +4,9 @@ import * as db from '../db/dbFunctions.ts'
 
 const router = Router()
 
-router.get('/:id', async (req, res) => {
+router.get('/:title', async (req, res) => {
   try {
-    const id = Number(req.params.id)
+    const id = Number(req.params.title)
     const details = await db.getRecipeDetailsById(id)
     const ingredients = await db.getRecipeIngredientsById(id)
     const macros = await db.getRecipeMacrosById(id)
