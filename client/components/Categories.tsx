@@ -1,48 +1,37 @@
 import { Link } from 'react-router-dom'
+import { Category } from '../../models/recipes'
+import { fetchCategories } from '../apis/apiClient'
+import { useQuery } from '@tanstack/react-query'
 
 export function Categories() {
-  const fakeCategories = [
-    {
-      id: 1,
-      description: 'Sides',
-      image: '/public/01-image.webp',
-    },
-    {
-      id: 2,
-      description: 'Mains',
-      image: '/public/02-image.webp',
-    },
-    {
-      id: 3,
-      description: 'Salads',
-      image: '/public/03-image.webp',
-    },
-    {
-      id: 4,
-      description: 'Desserts',
-      image: '/public/04-image.webp',
-    },
-    {
-      id: 5,
-      description: 'Breakfast',
-      image: '/public/05-image.webp',
-    },
-    {
-      id: 6,
-      description: 'Drinks',
-      image: '/public/06-image.webp',
-    },
-  ]
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ['categories'],
+    queryFn: () => fetchCategories(),
+  })
+  if (isLoading) {
+    return <p>Loading data...</p>
+  }
 
-  return (
-    <>
-      <ul>
-        {fakeCategories.map((categories) => (
-          <li key={categories.id}>
-            <Link to={categories.description}> {categories.description}</Link>
-          </li>
-        ))}
-      </ul>
-    </>
-  )
+  if (isError) {
+    console.log(error)
+    return <p>Error...</p>
+  }
+
+  if (data)
+    return (
+      <>
+        {console.log(data)}
+        <ul>
+          {data.categories.map((category: Category) => (
+            <li key={category.id}>
+              <div>
+                <Link to={category.description}>
+                  <p>{category.description}</p>
+                </Link>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </>
+    )
 }

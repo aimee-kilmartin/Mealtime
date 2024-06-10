@@ -14,8 +14,9 @@ import {
   MethodCard,
 } from '../../models/details.ts'
 
-export async function getAllCategories(): Promise<Category[]> {
-  return await connection('category').select()
+export async function getAllCategories() {
+  const categories = await connection('category').select()
+  return categories
 }
 
 export async function getRecipesByCategory(id: number): Promise<RecipesList[]> {
