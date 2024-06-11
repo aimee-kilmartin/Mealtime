@@ -1,19 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
-import {
-  fetchRecipeDescription,
-  fetchRecipeDetails,
-} from '../apis/apiClientRecipes'
-import { RecipeDescription } from './RecipeDescription'
+import { fetchAllRecipeDetails } from '../apis/apiClientRecipes'
+import { RecipeDetails } from './RecipeDetails'
 import { RecipeIngredients } from './RecipeIngredients'
 import { RecipeMacros } from './RecipeMacros'
 import { useParams } from 'react-router-dom'
 
 export function Recipe() {
-  const { recipeTitle } = useParams()
+  const recipeId = useParams()
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['recipe'],
-    queryFn: () => fetchRecipeDescription(recipeTitle),
+    queryFn: () => fetchAllRecipeDetails(Number(recipeId.id)),
   })
+  //params has  weird this where it is {id: 3} so need to dot into it
   if (isLoading) {
     return <p>Loading data...</p>
   }
@@ -27,7 +25,7 @@ export function Recipe() {
     return (
       <>
         <p>Recipe</p>
-        <RecipeDescription />
+        <RecipeDetails recipe={data} />
         <RecipeIngredients />
         <RecipeMacros />
       </>

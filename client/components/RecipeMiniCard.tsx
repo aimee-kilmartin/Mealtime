@@ -2,17 +2,14 @@ import { Link } from 'react-router-dom'
 import { Recipe } from '../../models/recipes'
 
 export function RecipeMiniCard(recipe: Recipe) {
-  {
-    console.log(recipe.image)
-  }
   return (
     <>
       <div>
-        <Link to={`/recipes/${recipe.title}`}>
+        <Link to={`/recipes/${recipe.id}`}>
           <h2>{recipe.title} </h2>
-          <p>{recipe.description}</p>
         </Link>
         <div>
+          <p>{recipe.description}</p>
           <img src={recipe.image} alt="" />
         </div>
       </div>

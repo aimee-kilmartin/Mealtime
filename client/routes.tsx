@@ -5,7 +5,7 @@ import { Categories } from './components/Categories.tsx'
 import { CategoryList } from './components/CategoryList.tsx'
 import { Recipe } from './components/RecipeCard.tsx'
 import { RecipeIngredients } from './components/RecipeIngredients.tsx'
-import { RecipeDescription } from './components/RecipeDescription.tsx'
+import { RecipeDescription } from './components/RecipeDetails.tsx'
 import { RecipeMacros } from './components/RecipeMacros.tsx'
 // import { RecipeMethod } from './components/RecipeMethod.tsx'
 
@@ -14,11 +14,12 @@ export default createRoutesFromElements(
     <Route index element={<Categories />} />
     <Route path="/:category" element={<CategoryList />} />
     <Route
-      path="/:category/:id"
+      path="/recipes/:id"
       element={
         <>
           <Recipe />
-          <RecipeIngredients /> <RecipeDescription /> <RecipeMacros />
+          {/* <RecipeIngredients /> <RecipeDescription recipeTitle={''} />{' '}
+          <RecipeMacros /> */}
         </>
       }
     />
