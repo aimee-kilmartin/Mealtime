@@ -4,7 +4,17 @@ import * as db from '../db/dbFunctions.ts'
 
 const router = Router()
 
-router.get('/:id', async (req, res) => {
+router.get('/:id/ingredients', async (req, res) => {
+  try {
+    const id = Number(req.params.id)
+    const ingredients = await db.getRecipeIngredientsById(id)
+    res.json(ingredients)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+})
+router.get('/:id/details', async (req, res) => {
   try {
     const id = Number(req.params.id)
     const details = await db.getRecipeDetailsById(id)
@@ -21,7 +31,7 @@ router.get('/:id', async (req, res) => {
 //     const details = await db.getRecipeDetailsById(id)
 //     const ingredients = await db.getRecipeIngredientsById(id)
 //     const macros = await db.getRecipeMacrosById(id)
-//     res.json({ ingredients, details, macros })
+//     res.json(ingredients, details, macros)
 //   } catch (error) {
 //     console.log(error)
 //     res.status(500).json({ message: 'Something went wrong' })
@@ -34,7 +44,8 @@ router.get('/:id', async (req, res) => {
 //     const details = await db.getRecipeDetailsById(id)
 //     const ingredients = await db.getRecipeIngredientsById(id)
 //     const macros = await db.getRecipeMacrosById(id)
-//     res.json({ ingredients, details, macros })
+//     const allInfo = [details, ingredients, macros]
+//     res.json(allInfo)
 //   } catch (error) {
 //     console.log(error)
 //     res.status(500).json({ message: 'Something went wrong' })

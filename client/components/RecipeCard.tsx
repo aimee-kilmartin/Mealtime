@@ -27,14 +27,14 @@ export function RecipeCard() {
   if (data) console.log('data', data)
   return (
     <>
-      <p>Recipe {data.title}</p>
+      <p>Recipe for: {data.title}</p>
       {/* <ul>
         {data.map((recipe) => (
           <li key={data.id}> {data.id}</li>
         ))}
       </ul> */}
 
-      <RecipeDetails data={data} />
+      <RecipeDetails detailsData={data} />
       {/* <RecipeIngredients />
         <RecipeMacros /> */}
     </>

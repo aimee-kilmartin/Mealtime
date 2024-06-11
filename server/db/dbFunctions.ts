@@ -42,9 +42,10 @@ export async function getRecipeDetailsById(id: number): Promise<Recipe[]> {
       'recipes.description',
       'recipes.image',
       'recipes.favourite',
-      'recipes.cook_time',
-      'recipes.prep_time',
-      'recipes.creation_date',
+      'recipes.cook_time as cookTime',
+      'recipes.prep_time as prepTime',
+      'recipes.servings',
+      'recipes.creation_date as creationDate',
     )
     .first()
   return recipeDetails as Recipe[]
