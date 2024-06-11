@@ -3,9 +3,12 @@ import { createRoutesFromElements, Route } from 'react-router-dom'
 import App from './components/App.tsx'
 import { Categories } from './components/Categories.tsx'
 import { CategoryList } from './components/CategoryList.tsx'
-import { Recipe } from './components/RecipeCard.tsx'
+import { Recipe, RecipeCard } from './components/RecipeCard.tsx'
 import { RecipeIngredients } from './components/RecipeIngredients.tsx'
-import { RecipeDescription } from './components/RecipeDetails.tsx'
+import {
+  RecipeDescription,
+  RecipeDetails,
+} from './components/RecipeDetails.tsx'
 import { RecipeMacros } from './components/RecipeMacros.tsx'
 // import { RecipeMethod } from './components/RecipeMethod.tsx'
 
@@ -17,9 +20,10 @@ export default createRoutesFromElements(
       path="/recipes/:id"
       element={
         <>
-          <Recipe />
-          {/* <RecipeIngredients /> <RecipeDescription recipeTitle={''} />{' '}
-          <RecipeMacros /> */}
+          <RecipeCard />
+          {/* <RecipeIngredients /> */}
+          {/* <RecipeDetails /> */}
+          {/* <RecipeMacros /> */}
         </>
       }
     />

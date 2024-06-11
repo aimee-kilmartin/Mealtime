@@ -33,8 +33,21 @@ export async function getRecipesByCategory(
     )
 }
 
-export async function getRecipeDetailsById(id: number): Promise<Recipe> {
-  return await connection('recipes').where({ id }).select().first()
+export async function getRecipeDetailsById(id: number): Promise<Recipe[]> {
+  const recipeDetails = await connection('recipes')
+    .where({ id })
+    .select(
+      'recipes.id',
+      'recipes.title',
+      'recipes.description',
+      'recipes.image',
+      'recipes.favourite',
+      'recipes.cook_time',
+      'recipes.prep_time',
+      'recipes.creation_date',
+    )
+    .first()
+  return recipeDetails as Recipe[]
 }
 
 export async function getRecipeIngredientsById(

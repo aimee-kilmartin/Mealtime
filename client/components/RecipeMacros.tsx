@@ -11,8 +11,8 @@ export function RecipeMacros(data: Props) {
     return (
       <>
         <p>Recipe Macros</p>
-        {console.log('macrodata', data)}
         {console.log('quan', data.quantity)}
+        {console.log('macrodata', data)}
         <>
           <div>
             <h2>{data.unit}</h2>
