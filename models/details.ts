@@ -1,4 +1,4 @@
-export type AllIngredients = Ingredients | IngredientsCard | IngredientsType
+export type AllIngredients = Ingredients & IngredientsCard & IngredientsType
 export interface IngredientsType {
   id: number
   type: string
@@ -6,7 +6,7 @@ export interface IngredientsType {
 
 export interface Ingredients {
   id: number
-  description: string
+  ingredientDescription: string
   staple: boolean
   ingredientTypeId: number
 }
@@ -15,9 +15,9 @@ export interface IngredientsCard {
   id: number
   recipeId: number
   ingredientsId: number
-  quantity: string
-  unit: string
-  note: string
+  ingredientQuantity: string
+  ingredientUnit: string
+  ingredientNote: string
 }
 
 export type AllMethods = Method | MethodCard
@@ -34,16 +34,18 @@ export interface MethodCard {
   step: number
 }
 
-export type AllMacros = Macros | MacrosCard
-export interface Macros {
-  id: number
-  name: string
-}
+export type AllMacros = MacrosCard | Macros
 
 export interface MacrosCard {
+  macrosName: string
   id: number
   recipeId: number
   macrosId: number
-  quantity: number
-  unit: string
+  macrosQuantity: number
+  macrosUnit: string
+}
+
+export interface Macros {
+  id: number
+  name: string
 }

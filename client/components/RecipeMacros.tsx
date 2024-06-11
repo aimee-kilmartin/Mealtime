@@ -1,25 +1,37 @@
-interface Props {
-  id: number
-  recipeId: number
-  macrosId: number
-  quantity: number
-  unit: string
-}
+import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
+import { fetchRecipeMacros } from '../apis/apiClientRecipes'
+import { MacrosCard } from '../../models/details'
 
-export function RecipeMacros(data: Props) {
-  if (data)
-    return (
-      <>
-        <p>Recipe Macros</p>
-        {console.log('quan', data.quantity)}
-        {console.log('macrodata', data)}
-        <>
-          <div>
-            <h2>{data.unit}</h2>
-            <p>p</p>
-            <div>{/* <img src={recipe} alt="" /> */}</div>
-          </div>
-        </>
-      </>
-    )
+export function RecipeMacros() {
+  const recipeId = useParams()
+  const id = Number(recipeId.id)
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['macros', id],
+    queryFn: () => fetchRecipeMacros(id),
+  })
+
+  if (isLoading) {
+    return <p>Loading..</p>
+  }
+
+  if (isError || !data) {
+    return <p> error </p>
+  }
+
+  return (
+    <>
+      <h2>Macros</h2>
+      <div>
+        <ul>
+          {data.map((macro: MacrosCard) => (
+            <li key={macro.macrosId}>
+              {' '}
+              {macro.macrosQuantity} {macro.macrosUnit} {macro.macrosName}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  )
 }

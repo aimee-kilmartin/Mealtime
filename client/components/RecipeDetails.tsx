@@ -1,19 +1,33 @@
-import { Recipe } from '../../models/recipes'
+import { useParams } from 'react-router-dom'
+import { fetchRecipeDetails } from '../apis/apiClientRecipes'
+import { useQuery } from '@tanstack/react-query'
 
-// interface Props {}
+export function RecipeDetails() {
+  const recipeId = useParams()
+  const id = Number(recipeId.id)
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['recipe', id],
+    queryFn: () => fetchRecipeDetails(id),
+  })
 
-export function RecipeDetails({ detailsData }) {
-  // const servings = String(detailsData.servings)
+  if (isLoading) {
+    return <p>Loading..</p>
+  }
+
+  if (isError || !data) {
+    return <p> error </p>
+  }
+
   return (
     <>
       <h2>Details</h2>
-      <p>Description: {detailsData.description}</p>
-      <p>Cook Time: {detailsData.cookTime}</p>
-      <p>Prep Time: {detailsData.prepTime}</p>
+      <p>Description: {data.description}</p>
+      <p>Cook Time: {data.cookTime}</p>
+      <p>Prep Time: {data.prepTime}</p>
       {/* <p>Servings: {servings}</p> */}
-      <p>Servings: {detailsData.servings}</p>
+      <p>Servings: {data.servings}</p>
       <div>
-        <img src={detailsData.image} alt="" />
+        <img src={data.image} alt="" />
       </div>
     </>
   )

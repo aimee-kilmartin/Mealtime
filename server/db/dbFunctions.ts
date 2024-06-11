@@ -59,7 +59,7 @@ export async function getRecipeIngredientsById(
     .where('recipes.id', id)
     .join('ingredients', 'ingredients_card.ingredients_id', 'ingredients.id')
     .select(
-      'ingredients_card.id',
+      'ingredients_card.id as ingredientsId',
       'ingredients_card.recipe_id as recipeId',
       'ingredients_card.ingredients_id as ingredientId',
       'ingredients_card.quantity as ingredientQuantity',

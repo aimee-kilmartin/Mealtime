@@ -1,6 +1,6 @@
 import { AllIngredients, AllMacros, AllMethods } from '../models/details.ts'
 
-export type RecipesFullList = Recipe | AllIngredients | AllMacros | AllMethods
+export type RecipesFullList = Recipe & AllIngredients & AllMacros & AllMethods
 export interface RecipesList {
   id: number
   title: string

@@ -2,12 +2,13 @@ import { fetchRecipesByCategory } from '../apis/apiClientLists'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { RecipeMiniCard } from './RecipeMiniCard'
+import { Recipe } from '../../models/recipes'
 
 export function CategoryList() {
   const { category } = useParams()
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['categories'],
-    queryFn: () => fetchRecipesByCategory(category),
+    queryFn: () => fetchRecipesByCategory(String(category)),
   })
   if (isLoading) {
     return <p>Loading data...</p>
@@ -24,19 +25,10 @@ export function CategoryList() {
     }
     return (
       <>
-        {data.map((recipe) => (
+        {data.map((recipe: Recipe) => (
           <RecipeMiniCard key={recipe.id} {...recipe} />
         ))}
       </>
     )
   }
-
-  //   return (
-  //     <>
-  //       {data.map((recipe) => (
-  //         <li key={recipe.id}>{recipe.description}</li>
-  //       ))}
-  //     </>
-  //   )
-  // }
 }
