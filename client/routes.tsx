@@ -11,14 +11,7 @@ export default createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Categories />} />
     <Route path="/:category" element={<CategoryList />} />
-    <Route
-      path="/recipes/:id"
-      element={
-        <>
-          <RecipeCard title={''} />
-        </>
-      }
-    />
+    <Route path="/recipes/:id" element={<RecipeCard />} />
     {/* <Route path="/locations/:id/method" element={<RecipeMethod />} /> */}
   </Route>,
 )
