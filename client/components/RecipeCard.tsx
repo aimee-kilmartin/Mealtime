@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchRecipeDetails } from '../apis/apiClientRecipes'
 import { useState } from 'react'
 import { RecipeMethod } from './RecipeMethod'
-import { RecipeData } from './RecipeData'
 import { RecipeDetails } from './RecipeDetails'
+import { RecipeMiniDetails } from './RecipeMiniDetails'
 import { RecipeIngredients } from './RecipeIngredients'
 import { RecipeMacros } from './RecipeMacros'
 
@@ -44,7 +44,10 @@ export function RecipeCard() {
           <RecipeMacros />
         </>
       ) : (
-        <RecipeMethod />
+        <>
+          <RecipeMiniDetails />
+          <RecipeMethod />
+        </>
       )}
     </>
   )
