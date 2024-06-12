@@ -16,3 +16,8 @@ export async function fetchRecipeMacros(id: number) {
   const res = await request.get(`${rootUrl}/${id}/macros`)
   return res.body
 }
+
+export async function fetchRecipeMethod(id: number) {
+  const res = await request.get(`${rootUrl}/${id}/method`)
+  return res.body
+}

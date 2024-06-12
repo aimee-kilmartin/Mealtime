@@ -7,7 +7,7 @@ import { Recipe } from '../../models/recipes'
 export function CategoryList() {
   const { category } = useParams()
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['categories'],
+    queryKey: ['categoryList'],
     queryFn: () => fetchRecipesByCategory(String(category)),
   })
   if (isLoading) {

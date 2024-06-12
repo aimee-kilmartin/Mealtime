@@ -1,24 +1,24 @@
 import { useParams } from 'react-router-dom'
-import { RecipeDetails } from './RecipeDetails'
-import { RecipeIngredients } from './RecipeIngredients'
-import { RecipeMacros } from './RecipeMacros'
 import { useQuery } from '@tanstack/react-query'
 import { fetchRecipeDetails } from '../apis/apiClientRecipes'
 import { useState } from 'react'
 import { RecipeMethod } from './RecipeMethod'
 import { RecipeData } from './RecipeData'
+import { RecipeDetails } from './RecipeDetails'
+import { RecipeIngredients } from './RecipeIngredients'
+import { RecipeMacros } from './RecipeMacros'
 
 export function RecipeCard() {
   const recipeId = useParams()
   const id = Number(recipeId.id)
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['recipe', id],
+    queryKey: ['recipe'],
     queryFn: () => fetchRecipeDetails(id),
   })
   const [methodOn, setMethodOn] = useState(true)
 
   function handleClick() {
-    setMethodOn(!setMethodOn)
+    setMethodOn(!methodOn)
     console.log(methodOn)
   }
 
@@ -37,7 +37,15 @@ export function RecipeCard() {
       </div>
       <h2>{data.title}</h2>
 
-      {methodOn ? <RecipeData /> : <RecipeMethod />}
+      {methodOn ? (
+        <>
+          <RecipeDetails />
+          <RecipeIngredients />
+          <RecipeMacros />
+        </>
+      ) : (
+        <RecipeMethod />
+      )}
     </>
   )
 }

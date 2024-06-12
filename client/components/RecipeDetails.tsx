@@ -6,7 +6,7 @@ export function RecipeDetails() {
   const recipeId = useParams()
   const id = Number(recipeId.id)
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['recipe', id],
+    queryKey: ['recipe'],
     queryFn: () => fetchRecipeDetails(id),
   })
 

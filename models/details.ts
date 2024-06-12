@@ -20,7 +20,7 @@ export interface IngredientsCard {
   ingredientNote: string
 }
 
-export type AllMethods = Method | MethodCard
+export type AllMethods = Method & MethodCard
 export interface Method {
   id: number
   method: string
