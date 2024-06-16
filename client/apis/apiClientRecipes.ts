@@ -1,6 +1,17 @@
 import request from 'superagent'
+import { RecipesList } from '../../models/recipes'
 
 const rootUrl = '/api/v1/recipes'
+
+export async function fetchAllRecipes() {
+  const res = await request.get(`${rootUrl}/allRecipes`)
+  return res.body as RecipesList[]
+}
+
+export async function fetchAllIngredients() {
+  const res = await request.get(`${rootUrl}/allIngredients`)
+  return res.body
+}
 
 export async function fetchRecipeDetails(id: number) {
   const res = await request.get(`${rootUrl}/${id}/details`)

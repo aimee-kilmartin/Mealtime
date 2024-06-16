@@ -1,5 +1,5 @@
 import connection from './connection.ts'
-import { Recipe, RecipesList } from '../../models/recipes.ts'
+import { Recipe, RecipesFullList, RecipesList } from '../../models/recipes.ts'
 import {
   IngredientsCard,
   MacrosCard,
@@ -22,6 +22,29 @@ export async function getRecipesByCategory(
       'recipes.title',
       'recipes.description',
       'recipes.image',
+    )
+}
+
+export async function getAllRecipes(): Promise<RecipesFullList[]> {
+  return await connection('recipes').select(
+    'recipes.title',
+    'recipes.description',
+    'recipes.image',
+    'recipes.favourite',
+  )
+}
+
+export async function getAllIngredientsCards(): Promise<RecipesFullList[]> {
+  return await connection('recipes')
+    .join('ingredients_card', 'recipes.id', 'ingredients_card.recipe_id')
+    .join('ingredients', 'ingredients_card.ingredients_id', 'ingredients.id')
+    .select(
+      'ingredients_card.id as ingredientsCardId',
+      'ingredients_card.recipe_id as recipeId',
+      'ingredients_card.quantity as ingredientQuantity',
+      'ingredients_card.unit as ingredientUnit',
+      'ingredients_card.ingredients_id as ingredientId',
+      'ingredients.description as ingredientDescription',
     )
 }
 
@@ -51,7 +74,7 @@ export async function getRecipeIngredientsById(
     .where('recipes.id', id)
     .join('ingredients', 'ingredients_card.ingredients_id', 'ingredients.id')
     .select(
-      'ingredients_card.id as ingredientsId',
+      'ingredients_card.id as ingredientsCardId',
       'ingredients_card.recipe_id as recipeId',
       'ingredients_card.ingredients_id as ingredientId',
       'ingredients_card.quantity as ingredientQuantity',

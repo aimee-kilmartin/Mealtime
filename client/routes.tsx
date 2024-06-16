@@ -4,6 +4,7 @@ import App from './components/App.tsx'
 import { Categories } from './components/Categories.tsx'
 import { CategoryList } from './components/CategoryList.tsx'
 import { RecipeCard } from './components/RecipeCard.tsx'
+import { SearchRecipes } from './components/SearchRecipes.tsx'
 
 // import { RecipeMethod } from './components/RecipeMethod.tsx'
 
@@ -11,7 +12,8 @@ export default createRoutesFromElements(
   <Route path="/" element={<App />}>
     <Route index element={<Categories />} />
     <Route path="/:category" element={<CategoryList />} />
+    <Route path="/search" element={<SearchRecipes />} />
     <Route path="/recipes/:id" element={<RecipeCard />} />
-    {/* <Route path="/locations/:id/method" element={<RecipeMethod />} /> */}
+    {/* <Route path="/search" element={<SearchResult searchQuery={query} />} /> */}
   </Route>,
 )
