@@ -1,5 +1,6 @@
 import request from 'superagent'
 import { RecipesList } from '../../models/recipes'
+import { AllIngredients } from '../../models/details'
 
 const rootUrl = '/api/v1/recipes'
 
@@ -10,7 +11,7 @@ export async function fetchAllRecipes() {
 
 export async function fetchAllIngredients() {
   const res = await request.get(`${rootUrl}/allIngredients`)
-  return res.body
+  return res.body as AllIngredients[]
 }
 
 export async function fetchRecipeDetails(id: number) {

@@ -1,9 +1,11 @@
-import { useState } from 'react'
-import { SearchBar } from './SearchBar'
 import { useAllRecipes } from '../hooks/useHooks'
 
-export function SearchRecipes() {
-  const [searchQuery, setSearchQuery] = useState('')
+interface Props {
+  searchQuery: string
+}
+
+export function SearchRecipes({ searchQuery }: Props) {
+  // const [searchRecipe, setSearchRecipe] = useState('')
   const { data, isLoading, isError } = useAllRecipes()
 
   if (isLoading) {
@@ -22,14 +24,12 @@ export function SearchRecipes() {
     })
     return (
       <>
-        <SearchBar setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
+        {/* <SearchBar setSearchQuery={setSearchQuery} searchQuery={searchQuery} /> */}
         <div>
-          <div>
-            {filteredData &&
-              filteredData.map((recipe) => (
-                <li key={recipe.id}>{recipe.title} </li>
-              ))}
-          </div>
+          {filteredData &&
+            filteredData.map((recipe) => (
+              <li key={recipe.id}>{recipe.title} </li>
+            ))}
         </div>
       </>
     )
